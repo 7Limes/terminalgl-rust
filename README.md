@@ -1,2 +1,2 @@
-# terminalgl-rust
+# terminalgl
 A small text based graphics library
