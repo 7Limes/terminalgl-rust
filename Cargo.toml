@@ -1,0 +1,16 @@
+[package]
+name = "terminalgl"
+edition = "2021"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+description = "A small text based graphics library"
+homepage = "https://github.com/7Limes/terminalgl-rust"
+documentation = ""
+repository = "https://github.com/7Limes/terminalgl-rust"
+readme = "README.md"
+keywords = ["text", "terminal", "graphics"]
+exclude = ["src/main.rs"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
