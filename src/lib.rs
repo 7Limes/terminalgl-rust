@@ -17,6 +17,7 @@ impl Surface {
         x.sqrt()
     }
 
+    /// Creates a new `Surface` of width `width` and height `height` filled with spaces.
     pub fn new(width: usize, height: usize) -> Surface {
         let v = vec![vec![' '; width]; height];
         Surface {
@@ -26,20 +27,23 @@ impl Surface {
         }
     }
 
-    // getters
+    /// Get the width of this surface.
     pub fn width(&self) -> usize {
         self.width
     }
 
+    /// Get the height of this surface.
     pub fn height(&self) -> usize {
         self.height
     }
 
+    /// Fill this surface with `c`.
     pub fn fill(&mut self, c: char) {
         self.data.clear();
         self.data = vec![vec![c; self.width]; self.height];
     }
 
+    /// Display this surface to the terminal.
     pub fn display(&self) {
         for row in &self.data {
             let row_str = row.iter().cloned().collect::<String>();
@@ -47,6 +51,7 @@ impl Surface {
         }
     }
 
+    /// Set `c` at `(x, y)`.
     pub fn draw_pixel(&mut self, x: isize, y: isize, c: char) -> bool {
         let mut placed = false;
         if x >= 0 && x < self.width as isize && y >= 0 && y < self.height as isize {
@@ -56,6 +61,7 @@ impl Surface {
         placed
     }
 
+    /// Draw a straight line using `c` starting at `(x, y)` with length `length` in direction `dir`.
     pub fn draw_straight_line(&mut self, mut x: isize, mut y: isize, mut length: isize, dir: Direction, c: char) {
         let mut addx: isize = 0;
         let mut addy: isize = 0;
@@ -79,6 +85,8 @@ impl Surface {
         }
     }
 
+    /// Draw a rectangle using `c` with the top-left corner at `(x, y)` with width `width` and height `height`.
+    /// If `fill` is false, only the outline of the rectangle will be drawn. Otherwise the entire rectangle will be filled.
     pub fn draw_rectangle(&mut self, x: isize, y: isize, width: usize, height: usize, c: char, fill: bool) {
         if !fill {
             self.draw_straight_line(x, y, width as isize, Direction::Right, c);
@@ -93,6 +101,7 @@ impl Surface {
         }
     }
 
+    /// Draw a line using `c` with starting point `(x1, y1)` and ending point `(x2, y2)`.
     pub fn draw_line(&mut self, x1: isize, y1: isize, x2: isize, y2: isize, c: char) {
         if x1 == x2 {
             self.draw_straight_line(x1, y1, y2-y1, Direction::Down, c);
@@ -114,6 +123,8 @@ impl Surface {
         self.draw_pixel(x2, y2, c);
     }
 
+    /// Draw an ellipse using `c` with a center at `(h, k)` with a width of `width` (on both sides) and a height of `height` (on both sides).
+    /// If `fill` is false, only the outline of the ellipse will be drawn. Otherwise, the entire ellipse will be filled.
     pub fn draw_ellipse(&mut self, h: isize, k: isize, a: usize, b: usize, c: char, fill: bool) {
         for x in 0..a*2+1 {
             let shiftx: isize = x as isize + h - a as isize;
@@ -130,6 +141,9 @@ impl Surface {
         }
     }
 
+    /// Draw a polygon using the points specified in `points`.
+    /// `points` must have a length of at least 2.
+    /// Sub-vectors of `points` must be `2` or more elements long.
     pub fn draw_polygon(&mut self, points: &Vec<Vec<isize>>, c: char) {
         for i in 0..points.len() {
             let mut next = i+1;
@@ -140,12 +154,15 @@ impl Surface {
         }
     }
 
+    /// Draw a line of text starting at `(x, y)` moving to the right for each character in `text`.
     pub fn draw_text(&mut self, x: isize, y: isize, text: &String) {
         for (i, c) in text.chars().enumerate() {
             self.draw_pixel(x+i as isize, y, c);
         }
     }
 
+    /// Display a surface `other` on top of this surface.
+    /// Any space characters (`' '`) in `other` will be considered transparent and will not be overwritten in this surface.
     pub fn blit(&mut self, x: isize, y: isize, other: &Surface) {
         for (i, row) in other.data.iter().enumerate() {
             for (j, c) in row.iter().enumerate() {
