@@ -1,3 +1,5 @@
+/// Draw without color.
+
 /// Direction for `straight_line`.
 pub enum Direction {
     Left,
