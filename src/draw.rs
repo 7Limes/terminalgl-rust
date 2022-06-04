@@ -1,12 +1,5 @@
-/// Draw without color.
-
-/// Direction for `straight_line`.
-pub enum Direction {
-    Left,
-    Right,
-    Up,
-    Down
-}
+// Draw without color.
+use super::{Direction, TextAlignment};
 
 
 /// Get euclidean distance between two points.
@@ -146,11 +139,33 @@ pub fn ellipse(h: isize, k: isize, a: usize, b: usize, c: char, fill: bool) {
 /// 
 /// Example
 /// ```
-/// use terminalgl as tgl;
-/// let s = String::from("sample text");
-/// tgl::draw::text(1, 1, &s);
+/// use terminalgl as tgl;"
+/// tgl::draw::text(1, 1, "sample text");
 /// ```
 pub fn text(x: isize, y: isize, text: &str) {
+    for (i, c) in text.chars().enumerate() {
+        pixel(x+i as isize, y, c);
+    }
+}
+
+
+/// Draw `text` starting at `(x, y)` with alignment `align`.
+/// 
+/// Examples
+/// ```
+/// use terminalgl as tgl;
+/// use tgl::TextAlignment::*;
+/// tgl::draw::text_aligned(1, 1, "sample text", Left);
+/// tgl::draw::text_aligned(10, 3, "sample text", Center);
+/// tgl::draw::text_aligned(15, 5, "sample text", Right);
+/// ```
+pub fn text_aligned(x: isize, y: isize, text: &str, align: TextAlignment) {
+    let mut x = x;
+    match align {
+        TextAlignment::Left => {},
+        TextAlignment::Center => x -= text.len() as isize / 2,
+        TextAlignment::Right => x -= text.len() as isize
+    }
     for (i, c) in text.chars().enumerate() {
         pixel(x+i as isize, y, c);
     }
