@@ -11,3 +11,7 @@ A small text based graphics library
 
 - Added non-colored and colored variants of `text_aligned` to draw aligned text.
 - Moved `Direction` and `TextAlignment` into lib.rs.
+
+## v0.2.2
+
+- Changed `straight_line` documentation.
