@@ -30,7 +30,7 @@ pub fn pixel(x: isize, y: isize, c: char) {
 /// Example
 /// ```
 /// use terminalgl as tgl;
-/// use terminalgl::draw::Direction;
+/// use terminalgl::Direction;
 /// tgl::draw::straight_line(1, 2, 5, Direction::Right, '#');
 /// ```
 pub fn straight_line(mut x: isize, mut y: isize, mut length: isize, dir: Direction, c: char) {
@@ -139,7 +139,7 @@ pub fn ellipse(h: isize, k: isize, a: usize, b: usize, c: char, fill: bool) {
 /// 
 /// Example
 /// ```
-/// use terminalgl as tgl;"
+/// use terminalgl as tgl;
 /// tgl::draw::text(1, 1, "sample text");
 /// ```
 pub fn text(x: isize, y: isize, text: &str) {
