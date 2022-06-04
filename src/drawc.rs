@@ -8,7 +8,6 @@ pub enum ColorKind {
     Bg
 }
 
-
 pub const RESET: &str = "\x1b[0m";
 pub const BLACK: &str = "\x1b[30m";
 pub const RED: &str = "\x1b[31m";
@@ -92,7 +91,7 @@ pub fn pixel(x: isize, y: isize, c: char, ccode: &str) {
 /// Example
 /// ```
 /// use terminalgl as tgl;
-/// use terminalgl::drawc::Direction;
+/// use terminalgl::Direction;
 /// tgl::drawc::straight_line(1, 2, 5, Direction::Right, '#', tgl::drawc::RED);
 /// ```
 pub fn straight_line(mut x: isize, mut y: isize, mut length: isize, dir: Direction, c: char, ccode: &str) {
