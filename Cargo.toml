@@ -1,14 +1,14 @@
 [package]
 name = "terminalgl"
 edition = "2021"
-version = "0.2.0"
+version = "0.2.1"
 license = "MIT OR Apache-2.0"
 description = "A small text based graphics library"
 homepage = "https://github.com/7Limes/terminalgl-rust"
-documentation = ""
+documentation = "https://docs.rs/terminalgl"
 repository = "https://github.com/7Limes/terminalgl-rust"
 readme = "README.md"
-keywords = ["text", "terminal", "graphics"]
+keywords = ["text", "terminal", "graphics", "color"]
 exclude = ["src/main.rs"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
