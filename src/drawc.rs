@@ -1,12 +1,5 @@
-/// Draw in color.
-
-/// Direction for `straight_line`.
-pub enum Direction {
-    Left,
-    Right,
-    Up,
-    Down
-}
+// Draw in color.
+use super::{Direction, TextAlignment};
 
 
 /// Color type for `rgb_to_ccode`. Can be either foreground (`fg`) or background (`bg`).
@@ -212,6 +205,29 @@ pub fn ellipse(h: isize, k: isize, a: usize, b: usize, c: char, ccode: &str, fil
 /// tgl::drawc::text(1, 1, &s, tgl::drawc::RED);
 /// ```
 pub fn text(x: isize, y: isize, text: &str, ccode: &str) {
+    for (i, c) in text.chars().enumerate() {
+        pixel(x+i as isize, y, c, ccode);
+    }
+}
+
+
+/// Draw `text` starting at `(x, y)` with alignment `align`.
+/// 
+/// Examples
+/// ```
+/// use terminalgl as tgl;
+/// use tgl::TextAlignment::*;
+/// tgl::drawc::text_aligned(1, 1, "sample text", Left, tgl::drawc::RED);
+/// tgl::drawc::text_aligned(10, 3, "sample text", Center, tgl::drawc::GREEN);
+/// tgl::drawc::text_aligned(15, 5, "sample text", Right, tgl::drawc::BLUE);
+/// ```
+pub fn text_aligned(x: isize, y: isize, text: &str, align: TextAlignment, ccode: &str) {
+    let mut x = x;
+    match align {
+        TextAlignment::Left => {},
+        TextAlignment::Center => x -= text.len() as isize / 2,
+        TextAlignment::Right => x -= text.len() as isize
+    }
     for (i, c) in text.chars().enumerate() {
         pixel(x+i as isize, y, c, ccode);
     }
