@@ -8,6 +8,7 @@ pub enum ColorKind {
     Bg
 }
 
+
 pub const RESET: &str = "\x1b[0m";
 pub const BLACK: &str = "\x1b[30m";
 pub const RED: &str = "\x1b[31m";
