@@ -20,3 +20,20 @@ pub fn size() -> (u16, u16) {
         (size.cols, size.rows)
     }).unwrap()
 }
+
+
+/// Direction for `straight_line`.
+pub enum Direction {
+    Left,
+    Right,
+    Up,
+    Down
+}
+
+
+/// Alignment for `text_aligned`.
+pub enum TextAlignment {
+    Left,
+    Right,
+    Center
+}
